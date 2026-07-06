@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Events | Yaadgar Events Planner</title>
+<meta name="description" content="Explore every event category Yaadgar Events Planner designs — mehndi, baat pakki, birthdays, bridal showers, anniversaries, aqeeqah and more.">
+<link rel="icon" href="images/logo/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .event-hub-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 1.8rem; }
+  @media (max-width:980px){ .event-hub-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width:620px){ .event-hub-grid{ grid-template-columns: 1fr; } }
+  .event-hub-card{
+    position:relative; border-radius: var(--radius-md); overflow:hidden; min-height: 320px;
+    display:flex; flex-direction:column; justify-content:flex-end; color:var(--cream);
+    background: linear-gradient(rgba(15,12,8,.1), rgba(15,12,8,.88)), var(--img) center/cover;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .event-hub-card:hover{ transform: translateY(-6px); box-shadow: 0 26px 44px -24px rgba(24,20,15,.4); }
+  .event-hub-card .ehc-body{ padding: 1.6rem; }
+  .event-hub-card .service-icon{ background: rgba(248,243,233,.14); border-color: rgba(217,198,150,.4); color: var(--bronze-light); margin:0 0 .9rem; }
+  .event-hub-card h3{ color: var(--cream); font-size:1.4rem; margin-bottom:.4rem; }
+  .event-hub-card p{ font-size:.88rem; color: rgba(248,243,233,.82); margin-bottom:1rem; }
+  .event-hub-card.no-photo{ background: linear-gradient(155deg, var(--ink) 0%, #2c2416 100%); }
+</style>
+</head>
+<body data-page="events">
+
+<div class="preloader" id="preloader"><div class="preloader-mark"><img src="images/logo/logo-cream.png" alt="Loading"><div class="preloader-bar"></div></div></div>
+
+<div id="header-mount"></div>
+
+<section class="page-hero" style="--img:url('../images/gallery/mehndi/mehndi-3.jpg')">
+  <div>
+    <p class="eyebrow">Every Occasion, Perfected</p>
+    <h1>Our Events</h1>
+    <p class="breadcrumb"><a href="index.html">Home</a> / Events</p>
+  </div>
+</section>
+
+<section class="services">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">Browse By Category</p>
+      <h2 class="section-title">Choose An Occasion</h2>
+      <p class="section-sub" style="margin-inline:auto">Every category has its own dedicated gallery with real photos, pricing and a direct booking link.</p>
+    </div>
+    <div class="event-hub-grid reveal-stagger" id="eventHubGrid"></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container reveal">
+    <p class="eyebrow center" style="color:var(--bronze-light)">Don't See Your Occasion?</p>
+    <h2>We Plan That Too</h2>
+    <div class="actions">
+      <a href="book.html" class="btn btn-gold">Book Now</a>
+      <a href="contact.html" class="btn btn-outline on-dark">Ask Us Anything</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-mount"></div>
+<div id="float-mount"></div>
+
+<script src="js/main.js"></script>
+<script>
+  const CATEGORIES = [
+    { slug:'birthday', title:'Birthday Events', icon:'icon-cat-cake', desc:'Themed setups for every age and milestone.', img:'images/gallery/birthday/birthday-1.jpg' },
+    { slug:'mehndi', title:'Mehndi', icon:'icon-cat-henna', desc:'Vibrant colour and traditional floral styling.', img:'images/gallery/mehndi/mehndi-6.jpg' },
+    { slug:'baat-pakki', title:'Baat Pakki', icon:'icon-cat-ring', desc:'Elegant styling for the very first family gathering.', img:'images/gallery/baat-pakki/baat-pakki-4.jpg' },
+    { slug:'bridal-shower', title:'Bridal Shower', icon:'icon-cat-tiara', desc:'Chic, photo-ready styling for the bride-to-be.', img:'images/gallery/bridal-shower/bridal-2.jpg' },
+    { slug:'anniversary', title:'Anniversary', icon:'icon-cat-infinity', desc:'Celebrate the years together in style.', img:'images/gallery/anniversary/anniversary-1.jpg' },
+    { slug:'aqeeqah', title:'Aqeeqah', icon:'icon-cat-moon', desc:'Graceful, tradition-respecting ceremony décor.', img:'images/gallery/aqeeqah/aqeeqah-1.jpg' },
+  ];
+
+  document.getElementById('eventHubGrid').innerHTML = CATEGORIES.map(c => `
+    <a class="event-hub-card ${!c.img ? 'no-photo' : ''}" href="events-${c.slug}.html" ${c.img ? `style="--img:url('${c.img}')"` : ''}>
+      <div class="ehc-body">
+        <div class="service-icon"><svg><use href="#${c.icon}"/></svg></div>
+        <h3>${c.title}</h3>
+        <p>${c.desc}</p>
+        <span class="card-link" style="color:var(--bronze-light)">View Gallery <svg><use href="#icon-arrow-right"/></svg></span>
+      </div>
+    </a>`).join('');
+
+  document.addEventListener('DOMContentLoaded', () => initLayout('events'));
+</script>
+</body>
+</html>

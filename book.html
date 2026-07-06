@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Now | Yaadgar Events Planner</title>
+<meta name="description" content="Book your mehndi, corporate event or private party with Yaadgar Events Planner. Fill out our booking form and our team will confirm within 24 hours.">
+<link rel="icon" href="images/logo/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="book">
+
+<div class="preloader" id="preloader"><div class="preloader-mark"><img src="images/logo/logo-cream.png" alt="Loading"><div class="preloader-bar"></div></div></div>
+
+<div id="header-mount"></div>
+
+<section class="page-hero" style="--img:url('../images/gallery/birthday/birthday-8.jpg'); min-height:38vh">
+  <div>
+    <p class="eyebrow">Let's Get Started</p>
+    <h1>Book Now</h1>
+    <p class="breadcrumb"><a href="index.html">Home</a> / Book Now</p>
+  </div>
+</section>
+
+<section class="booking-wrap">
+  <div class="container">
+    <div class="booking-grid">
+
+      <form class="booking-card reveal" id="bookingForm" novalidate>
+        <p class="eyebrow">Booking Form</p>
+        <h2 class="section-title" style="margin-bottom:1.8rem">Tell Us About Your Event</h2>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="fullName">Full Name <span class="req">*</span></label>
+            <input type="text" id="fullName" name="fullName" required placeholder="Your full name">
+            <span class="error-msg"></span>
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" required placeholder="+92 3XX XXXXXXX">
+            <span class="error-msg"></span>
+          </div>
+          <div class="field">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+            <span class="error-msg"></span>
+          </div>
+          <div class="field">
+            <label for="eventType">Event Type <span class="req">*</span></label>
+            <select id="eventType" name="eventType" required>
+              <option value="">Select event type</option>
+              <option>Birthday Events</option>
+              <option>Mehndi</option>
+              <option>Baat Pakki</option>
+              <option>Bridal Shower</option>
+              <option>Anniversary</option>
+              <option>Aqeeqah</option>
+            </select>
+            <span class="error-msg"></span>
+          </div>
+          <div class="field">
+            <label for="eventDate">Event Date <span class="req">*</span></label>
+            <input type="date" id="eventDate" name="eventDate" required>
+            <span class="error-msg"></span>
+          </div>
+          <div class="field">
+            <label for="eventTime">Event Time <span class="req">*</span></label>
+            <input type="time" id="eventTime" name="eventTime" required>
+            <span class="error-msg"></span>
+          </div>
+          <div class="field full">
+            <label for="location">Event Location <span class="req">*</span></label>
+            <input type="text" id="location" name="location" required placeholder="Venue name / address, city">
+            <span class="error-msg"></span>
+          </div>
+          <div class="field">
+            <label for="guests">Number Of Guests <span class="req">*</span></label>
+            <input type="number" id="guests" name="guests" min="1" required placeholder="e.g. 150">
+            <span class="error-msg"></span>
+          </div>
+          <div class="field">
+            <label>Decoration Required</label>
+            <div class="radio-row">
+              <label><input type="radio" name="decoration" value="Yes" checked> Yes</label>
+              <label><input type="radio" name="decoration" value="No"> No</label>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="budget">Budget Range</label>
+            <select id="budget" name="budget">
+              <option value="">Select a budget range</option>
+              <option>Under PKR 100,000</option>
+              <option>PKR 100,000 – 300,000</option>
+              <option>PKR 300,000 – 600,000</option>
+              <option>PKR 600,000 – 1,000,000</option>
+              <option>Above PKR 1,000,000</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="requirements">Special Requirements</label>
+            <textarea id="requirements" name="requirements" placeholder="Theme, colour palette, cultural requirements, dietary notes, etc."></textarea>
+          </div>
+          <div class="field full">
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" placeholder="Anything else we should know before we call you back."></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Submit Booking</button>
+          <button type="reset" class="btn btn-outline">Reset</button>
+        </div>
+      </form>
+
+      <aside class="booking-aside">
+        <div class="aside-card reveal">
+          <h4>What Happens Next</h4>
+          <ul>
+            <li><svg><use href="#icon-check-circle"/></svg><span>Our team reviews your booking within 24 hours.</span></li>
+            <li><svg><use href="#icon-phone"/></svg><span>Abdullah or Huzaifa calls to confirm details and budget.</span></li>
+            <li><svg><use href="#icon-check-circle"/></svg><span>A tailored package and quote is shared for approval.</span></li>
+            <li><svg><use href="#icon-check-circle"/></svg><span>Once confirmed, planning and decoration prep begins.</span></li>
+          </ul>
+        </div>
+        <div class="aside-card notice reveal">
+          <h4>Advance Payment Notice</h4>
+          <p style="font-size:.9rem">Decoration bookings require a 50% advance payment before work begins. The remaining balance is due on or before the event date.</p>
+          <button type="button" class="btn btn-outline btn-block" id="viewAdvancePaymentBtn" style="margin-top:1.1rem">View Advance Payment Details</button>
+        </div>
+        <div class="aside-card reveal">
+          <h4>Prefer To Talk Directly?</h4>
+          <ul>
+            <li><svg><use href="#icon-phone"/></svg><span>Abdullah Sheikh — +92 307 8719144</span></li>
+            <li><svg><use href="#icon-phone"/></svg><span>Huzaifa Wazir — +92 335 1414844</span></li>
+            <li><svg><use href="#icon-mail"/></svg><span>yaadgareventsplanner@gmail.com</span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<div id="footer-mount"></div>
+<div id="float-mount"></div>
+
+<!-- Booking confirmation modal -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <button class="modal-close-x" id="modalCloseX" aria-label="Close"><svg style="width:18px;height:18px"><use href="#icon-close"/></svg></button>
+    <div class="modal-check"><svg><use href="#icon-check-circle"/></svg></div>
+    <h3>Booking Received!</h3>
+    <p>Thank you for choosing Yaadgar Events Planner. Our team will review your request and get in touch within 24 hours to confirm details.</p>
+    <div style="display:flex;flex-direction:column;gap:.8rem">
+      <button class="btn btn-gold" id="proceedAdvanceBtn">Proceed To Advance Payment</button>
+      <button class="btn btn-outline" id="modalCloseBtn">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Advance payment details modal -->
+<div class="modal-overlay" id="advanceModal">
+  <div class="modal-box" style="max-width:500px;text-align:left">
+    <button class="modal-close-x" id="advanceModalCloseX" aria-label="Close"><svg style="width:18px;height:18px"><use href="#icon-close"/></svg></button>
+    <div style="text-align:center">
+      <div class="modal-check" style="background:var(--ink)"><svg><use href="#icon-wallet"/></svg></div>
+      <h3>50% Advance Payment</h3>
+      <p style="margin-bottom:1.6rem">Please pay 50% of your package amount using any of the methods below to confirm your booking. Share the payment screenshot with us on WhatsApp once done.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.6rem">
+      <div style="background:var(--cream);border:1px solid var(--sand);border-radius:var(--radius-sm);padding:1rem 1.2rem">
+        <h4 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--bronze-deep);margin-bottom:.4rem">Bank Transfer</h4>
+        <p style="font-size:.9rem">Account Title: <strong>Muhammad Abdullah</strong><br>Bank: UBL<br>Account No: PK85UNIL0109000333225202</p>
+      </div>
+      <div style="background:var(--cream);border:1px solid var(--sand);border-radius:var(--radius-sm);padding:1rem 1.2rem">
+        <h4 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--bronze-deep);margin-bottom:.4rem">Naya Pay</h4>
+        <p style="font-size:.9rem">Account Title: <strong>Huzaifa Wazir</strong><br>Number: +92 335 1414844</p>
+      </div>
+      <div style="background:var(--cream);border:1px solid var(--sand);border-radius:var(--radius-sm);padding:1rem 1.2rem">
+        <h4 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--bronze-deep);margin-bottom:.4rem">EasyPaisa</h4>
+        <p style="font-size:.9rem">Account Title: <strong>Muhammad Abdullah</strong><br>Number: +92 307 8719144 </p>
+      </div>
+    </div>
+    <a href="https://wa.me/923078719144" target="_blank" rel="noopener" class="btn btn-primary btn-block">Send Payment Screenshot On WhatsApp</a>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    initLayout('book');
+    initBookingForm();
+    initAdvancePaymentModal();
+  });
+</script>
+</body>
+</html>

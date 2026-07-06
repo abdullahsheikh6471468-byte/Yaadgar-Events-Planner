@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anniversary | Yaadgar Events Planner</title>
+<meta name="description" content="Anniversary celebration decor by Yaadgar Events Planner — romantic arches, neon signage and table styling.">
+<link rel="icon" href="images/logo/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="events">
+
+<div class="preloader" id="preloader"><div class="preloader-mark"><img src="images/logo/logo-cream.png" alt="Loading"><div class="preloader-bar"></div></div></div>
+
+<div id="header-mount"></div>
+
+<div id="event-hero-mount"></div>
+<div id="event-intro-mount"></div>
+<div id="event-gallery-mount"></div>
+
+<section class="cta-band">
+  <div class="container reveal">
+    <p class="eyebrow center" style="color:var(--bronze-light)">Ready When You Are</p>
+    <h2>Let's Make Your Anniversary Memorable</h2>
+    <div class="actions">
+      <a href="book.html" class="btn btn-gold">Book Now</a>
+      <a href="events.html" class="btn btn-outline on-dark">Back To All Events</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-mount"></div>
+<div id="float-mount"></div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close"><svg style="width:18px;height:18px"><use href="#icon-close"/></svg></button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous"><svg style="width:18px;height:18px;transform:rotate(180deg)"><use href="#icon-arrow-right"/></svg></button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Next"><svg style="width:18px;height:18px"><use href="#icon-arrow-right"/></svg></button>
+  <p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  const EVENT_DATA = {
+    slug: 'anniversary',
+    title: 'Anniversary',
+    icon: 'icon-cat-infinity',
+    heroImg: 'anniversary/anniversary-1.jpg',
+    metaDescription: "Anniversary celebration decor by Yaadgar Events Planner — romantic arches, neon signage and table styling.",
+    intro: "Mark the years together with a celebration styled to match the milestone — intimate or grand, exactly as you imagine it.",
+    priceNote: "Prices below are per photographed setup and vary with venue size and add-ons.",
+    gallery: [
+      { src: 'anniversary/anniversary-1.jpg', alt: 'photo 1', price: 'PKR 30,000' },
+      { src: 'anniversary/anniversary-2.jpg', alt: 'photo 2', price: 'PKR 35,000' },
+      { src: 'anniversary/anniversary-3.jpg', alt: 'photo 3', price: 'PKR 40,000' },
+      { src: 'anniversary/anniversary-4.jpg', alt: 'photo 4', price: 'PKR 45,000' },
+      { src: 'anniversary/anniversary-5.jpg', alt: 'photo 5', price: 'PKR 50,000' },
+      { src: 'anniversary/anniversary-6.jpg', alt: 'photo 6', price: 'PKR 55,000' }
+    ]
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initLayout('events');
+    initEventDetailPage(EVENT_DATA);
+  });
+</script>
+</body>
+</html>
