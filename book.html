@@ -78,11 +78,6 @@
             <span class="error-msg"></span>
           </div>
           <div class="field">
-            <label for="guests">Number Of Guests <span class="req">*</span></label>
-            <input type="number" id="guests" name="guests" min="1" required placeholder="e.g. 150">
-            <span class="error-msg"></span>
-          </div>
-          <div class="field">
             <label>Decoration Required</label>
             <div class="radio-row">
               <label><input type="radio" name="decoration" value="Yes" checked> Yes</label>
@@ -90,15 +85,10 @@
             </div>
           </div>
           <div class="field full">
-            <label for="budget">Budget Range</label>
-            <select id="budget" name="budget">
-              <option value="">Select a budget range</option>
-              <option>Under PKR 100,000</option>
-              <option>PKR 100,000 – 300,000</option>
-              <option>PKR 300,000 – 600,000</option>
-              <option>PKR 600,000 – 1,000,000</option>
-              <option>Above PKR 1,000,000</option>
-            </select>
+            <label for="decorationImage">Decoration Inspiration Picture <span style="font-weight:400;opacity:.65">(optional)</span></label>
+            <input type="file" id="decorationImage" name="decorationImage" accept="image/*">
+            <span class="error-msg"></span>
+            <p style="font-size:.82rem;opacity:.7;margin-top:.4rem">Not required — if you have a photo of the kind of decoration you'd like, attach it here. After you submit, tap "Share Photo On WhatsApp" in the confirmation popup to send it straight into the chat that opens.</p>
           </div>
           <div class="field full">
             <label for="requirements">Special Requirements</label>
@@ -120,8 +110,8 @@
         <div class="aside-card reveal">
           <h4>What Happens Next</h4>
           <ul>
-            <li><svg><use href="#icon-check-circle"/></svg><span>Our team reviews your booking within 24 hours.</span></li>
-            <li><svg><use href="#icon-phone"/></svg><span>Abdullah or Huzaifa calls to confirm details and budget.</span></li>
+            <li><svg><use href="#icon-whatsapp"/></svg><span>Submitting opens WhatsApp with your details pre-filled — just hit Send.</span></li>
+            <li><svg><use href="#icon-phone"/></svg><span>Abdullah or Huzaifa confirms details and budget with you directly.</span></li>
             <li><svg><use href="#icon-check-circle"/></svg><span>A tailored package and quote is shared for approval.</span></li>
             <li><svg><use href="#icon-check-circle"/></svg><span>Once confirmed, planning and decoration prep begins.</span></li>
           </ul>
@@ -152,9 +142,11 @@
   <div class="modal-box">
     <button class="modal-close-x" id="modalCloseX" aria-label="Close"><svg style="width:18px;height:18px"><use href="#icon-close"/></svg></button>
     <div class="modal-check"><svg><use href="#icon-check-circle"/></svg></div>
-    <h3>Booking Received!</h3>
-    <p>Thank you for choosing Yaadgar Events Planner. Our team will review your request and get in touch within 24 hours to confirm details.</p>
+    <h3>Almost Done!</h3>
+    <p>We've opened WhatsApp in a new tab with all your details already typed out — just hit <strong>Send</strong> there to confirm your booking with our team.</p>
+    <p id="shareImageHint" style="display:none;font-size:.85rem;opacity:.75;margin-top:-.8rem;margin-bottom:1.2rem">Attached a decoration photo? Tap below to send it straight into that same chat.</p>
     <div style="display:flex;flex-direction:column;gap:.8rem">
+      <button type="button" class="btn btn-outline" id="shareImageBtn" style="display:none"><svg style="width:16px;height:16px;margin-right:.4rem;vertical-align:-3px"><use href="#icon-whatsapp"/></svg>Share Photo On WhatsApp</button>
       <button class="btn btn-gold" id="proceedAdvanceBtn">Proceed To Advance Payment</button>
       <button class="btn btn-outline" id="modalCloseBtn">Done</button>
     </div>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews | Yaadgar Events Planner</title>
+<meta name="description" content="See what our clients say about Yaadgar Events Planner, and share your own experience with us on WhatsApp.">
+<link rel="icon" href="images/logo/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="reviews">
+
+<div class="preloader" id="preloader"><div class="preloader-mark"><img src="images/logo/logo-cream.png" alt="Loading"><div class="preloader-bar"></div></div></div>
+
+<div id="header-mount"></div>
+
+<section class="page-hero" style="--img:url('../images/gallery/mehndi/mehndi-3.jpg'); min-height:38vh">
+  <div>
+    <p class="eyebrow">Kind Words From Our Clients</p>
+    <h1>Reviews</h1>
+    <p class="breadcrumb"><a href="index.html">Home</a> / Reviews</p>
+  </div>
+</section>
+
+<!-- ===================== EXISTING TESTIMONIALS ===================== -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">What Our Clients Say</p>
+      <h2 class="section-title">Some Recent Reviews</h2>
+    </div>
+    <div class="t-track reveal">
+      <div class="t-slide active">
+        <svg class="t-quote"><use href="#icon-quote"/></svg>
+        <div class="t-stars">
+          <svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg>
+        </div>
+        <p class="t-text">Our mehndi decor looked like something out of a magazine. The team handled everything, and we didn't have to worry about a single detail.</p>
+        <p class="t-name">Ayesha K.</p>
+        <p class="t-role">Mehndi &amp; Barat, Lahore</p>
+      </div>
+      <div class="t-slide">
+        <svg class="t-quote"><use href="#icon-quote"/></svg>
+        <div class="t-stars">
+          <svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg>
+        </div>
+        <p class="t-text">Professional from the first call to the last guest leaving. Our corporate anniversary dinner ran perfectly on time.</p>
+        <p class="t-name">Hamza R.</p>
+        <p class="t-role">Corporate Event, Islamabad</p>
+      </div>
+      <div class="t-slide">
+        <svg class="t-quote"><use href="#icon-quote"/></svg>
+        <div class="t-stars">
+          <svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg>
+        </div>
+        <p class="t-text">Our daughter's bridal shower was beyond what we imagined — elegant, warm, and exactly on budget.</p>
+        <p class="t-name">Saima N.</p>
+        <p class="t-role">Bridal Shower, Karachi</p>
+      </div>
+    </div>
+    <div class="t-dots" id="tDots"></div>
+  </div>
+</section>
+
+<!-- ===================== LEAVE A REVIEW ===================== -->
+<section class="booking-wrap">
+  <div class="container">
+    <div class="booking-grid">
+
+      <div>
+      <form class="booking-card reveal" id="reviewForm" novalidate>
+        <p class="eyebrow">Share Your Experience</p>
+        <h2 class="section-title" style="margin-bottom:1.8rem">Leave A Review</h2>
+
+        <div class="form-grid">
+          <div class="field full">
+            <label for="rName">Full Name <span class="req">*</span></label>
+            <input type="text" id="rName" required placeholder="Your name">
+            <span class="error-msg"></span>
+          </div>
+          <div class="field full">
+            <label for="rEventType">Event Type <span style="font-weight:400;opacity:.65">(optional)</span></label>
+            <select id="rEventType">
+              <option value="">Select event type</option>
+              <option>Birthday Events</option>
+              <option>Mehndi</option>
+              <option>Baat Pakki</option>
+              <option>Bridal Shower</option>
+              <option>Anniversary</option>
+              <option>Aqeeqah</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Your Rating <span class="req">*</span></label>
+            <div class="star-rating" id="starRating">
+              <input type="radio" name="rating" id="star5" value="5"><label for="star5" title="5 stars"><svg><use href="#icon-star"/></svg></label>
+              <input type="radio" name="rating" id="star4" value="4"><label for="star4" title="4 stars"><svg><use href="#icon-star"/></svg></label>
+              <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="3 stars"><svg><use href="#icon-star"/></svg></label>
+              <input type="radio" name="rating" id="star2" value="2"><label for="star2" title="2 stars"><svg><use href="#icon-star"/></svg></label>
+              <input type="radio" name="rating" id="star1" value="1"><label for="star1" title="1 star"><svg><use href="#icon-star"/></svg></label>
+            </div>
+            <span class="error-msg" id="ratingError"></span>
+          </div>
+          <div class="field full">
+            <label for="rMessage">Your Review <span class="req">*</span></label>
+            <textarea id="rMessage" required placeholder="Tell us about your experience with Yaadgar Events Planner"></textarea>
+            <span class="error-msg"></span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Submit Review</button>
+          <button type="reset" class="btn btn-outline">Reset</button>
+        </div>
+      </form>
+
+      <div id="reviewSuccess" class="notice-box" style="display:none;margin-top:1.5rem">
+        <svg><use href="#icon-check-circle"/></svg>
+        <div><h4>Thank You!</h4><p>We've opened WhatsApp in a new tab with your review already typed out — just hit <strong>Send</strong> there and we'll take it from there. We really appreciate you taking the time to share it.</p></div>
+      </div>
+      </div>
+
+      <aside class="booking-aside">
+        <div class="aside-card reveal">
+          <h4>How It Works</h4>
+          <ul>
+            <li><svg><use href="#icon-star"/></svg><span>Rate your experience and write a few words about it.</span></li>
+            <li><svg><use href="#icon-whatsapp"/></svg><span>Submitting opens WhatsApp with your review pre-filled — just hit Send.</span></li>
+            <li><svg><use href="#icon-heart"/></svg><span>With your permission, we may feature it on this page and our social pages.</span></li>
+          </ul>
+        </div>
+        <div class="aside-card notice reveal">
+          <h4>Loved Working With Us?</h4>
+          <p style="font-size:.9rem">Reviews like yours help other families and hosts trust us with their most memorable days. Thank you for taking a moment to share.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<div id="footer-mount"></div>
+<div id="float-mount"></div>
+
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    initLayout('reviews');
+    initTestimonials();
+    initReviewForm();
+  });
+</script>
+</body>
+</html>

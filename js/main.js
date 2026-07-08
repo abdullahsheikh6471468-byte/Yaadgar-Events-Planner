@@ -80,6 +80,7 @@ function renderHeader(active){
     ['index.html', 'Home', 'home'],
     ['events.html', 'Events', 'events'],
     ['about.html', 'About', 'about'],
+    ['reviews.html', 'Reviews', 'reviews'],
     ['book.html', 'Book Now', 'book'],
     ['contact.html', 'Contact', 'contact'],
   ];
@@ -130,6 +131,7 @@ function renderFooter(){
             <li><a href="index.html">Home</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="about.html">About Us</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
             <li><a href="book.html">Book Now</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -433,8 +435,15 @@ function initFAQ(){
 }
 
 /* ---------------------------------------------------------------------
-   7. BOOKING FORM — validation + confirmation modal
+   7. BOOKING FORM — validation + WhatsApp handoff + confirmation modal
    -------------------------------------------------------------------- */
+const BUSINESS_WHATSAPP = '923078719144'; // Abdullah Sheikh — primary booking WhatsApp
+
+function openWhatsAppWithMessage(message){
+  const url = `https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank', 'noopener');
+}
+
 function initBookingForm(){
   const form = document.getElementById('bookingForm');
   if (!form) return;
@@ -460,11 +469,65 @@ function initBookingForm(){
     });
     if (!valid) return;
 
-    // Simulate submission (no backend wired up yet)
+    const f = new FormData(form);
+    const decoration = form.querySelector('input[name="decoration"]:checked')?.value || 'Not specified';
+    const decorationImageFile = form.querySelector('#decorationImage')?.files?.[0];
+    const lines = [
+      'Hello Yaadgar Events Planner! I would like to book an event. Here are my details:',
+      '',
+      `Name: ${f.get('fullName') || '-'}`,
+      `Phone: ${f.get('phone') || '-'}`,
+      `Email: ${f.get('email') || '-'}`,
+      `Event Type: ${f.get('eventType') || '-'}`,
+      `Event Date: ${f.get('eventDate') || '-'}`,
+      `Event Time: ${f.get('eventTime') || '-'}`,
+      `Location: ${f.get('location') || '-'}`,
+      `Decoration Required: ${decoration}`,
+      `Special Requirements: ${f.get('requirements') || 'None'}`,
+      `Additional Notes: ${f.get('notes') || 'None'}`,
+    ];
+
+    // Open WhatsApp immediately (within the click gesture, so it isn't popup-blocked)
+    openWhatsAppWithMessage(lines.join('\n'));
+
+    // Keep a reference to the picked image so the "Share Photo" button in the
+    // confirmation modal can send it, and show/hide that button accordingly.
+    lastDecorationImage = decorationImageFile || null;
+    const shareBtn = document.getElementById('shareImageBtn');
+    const shareHint = document.getElementById('shareImageHint');
+    if (shareBtn) shareBtn.style.display = lastDecorationImage ? 'block' : 'none';
+    if (shareHint) shareHint.style.display = lastDecorationImage ? 'block' : 'none';
+
+    // Also show the on-page confirmation for reassurance
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     form.reset();
   });
+
+  // WhatsApp links can only pre-fill text, never a file — that's a WhatsApp
+  // limitation, not something a website can work around. The closest we can
+  // get is the device's native Share Sheet, which lets the user pick the
+  // WhatsApp chat that just opened and send the photo into it in one tap.
+  let lastDecorationImage = null;
+  const shareBtn = document.getElementById('shareImageBtn');
+  if (shareBtn){
+    shareBtn.addEventListener('click', async () => {
+      if (!lastDecorationImage) return;
+      if (navigator.canShare && navigator.canShare({ files: [lastDecorationImage] })){
+        try {
+          await navigator.share({
+            files: [lastDecorationImage],
+            title: 'Decoration Inspiration Photo',
+            text: 'Decoration inspiration photo for my Yaadgar Events Planner booking.',
+          });
+        } catch (err) {
+          // User cancelled the share sheet — nothing to do.
+        }
+      } else {
+        alert("Your browser can't share files directly. Please open the WhatsApp chat that just opened and attach the photo manually — it only takes a second.");
+      }
+    });
+  }
 
   form.addEventListener('reset', () => {
     form.querySelectorAll('.field.error').forEach(f => { f.classList.remove('error'); f.querySelector('.error-msg').textContent = ''; });
@@ -492,7 +555,7 @@ function initAdvancePaymentModal(){
 }
 
 /* ---------------------------------------------------------------------
-   8. CONTACT FORM — lightweight validation + success state
+   8. CONTACT FORM — validation + WhatsApp handoff + success state
    -------------------------------------------------------------------- */
 function initContactForm(){
   const form = document.getElementById('contactForm');
@@ -506,6 +569,76 @@ function initContactForm(){
       if (!field.value.trim()){ wrap.classList.add('error'); valid = false; } else { wrap.classList.remove('error'); }
     });
     if (!valid) return;
+
+    const name = document.getElementById('cName')?.value || '-';
+    const email = document.getElementById('cEmail')?.value || '-';
+    const phone = document.getElementById('cPhone')?.value || 'Not provided';
+    const message = document.getElementById('cMessage')?.value || '-';
+    const lines = [
+      'Hello Yaadgar Events Planner! I have a question.',
+      '',
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      `Message: ${message}`,
+    ];
+
+    openWhatsAppWithMessage(lines.join('\n'));
+
+    form.style.display = 'none';
+    if (successBox) successBox.style.display = 'flex';
+  });
+}
+
+/* ---------------------------------------------------------------------
+   9. REVIEW FORM — validation + WhatsApp handoff + success state
+   -------------------------------------------------------------------- */
+function initReviewForm(){
+  const form = document.getElementById('reviewForm');
+  if (!form) return;
+  const successBox = document.getElementById('reviewSuccess');
+  const starWrap = document.getElementById('starRating');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    form.querySelectorAll('[required]').forEach(field => {
+      const wrap = field.closest('.field');
+      const err = wrap.querySelector('.error-msg');
+      if (!field.value.trim()){ wrap.classList.add('error'); if (err) err.textContent = 'This field is required.'; valid = false; }
+      else { wrap.classList.remove('error'); if (err) err.textContent = ''; }
+    });
+
+    const rating = form.querySelector('input[name="rating"]:checked')?.value;
+    const ratingError = document.getElementById('ratingError');
+    if (!rating){
+      starWrap?.classList.add('error');
+      if (ratingError) ratingError.textContent = 'Please select a rating.';
+      valid = false;
+    } else {
+      starWrap?.classList.remove('error');
+      if (ratingError) ratingError.textContent = '';
+    }
+
+    if (!valid) return;
+
+    const name = document.getElementById('rName')?.value || '-';
+    const eventType = document.getElementById('rEventType')?.value || 'Not specified';
+    const reviewText = document.getElementById('rMessage')?.value || '-';
+    const stars = '★'.repeat(Number(rating)) + '☆'.repeat(5 - Number(rating));
+
+    const lines = [
+      'Hello Yaadgar Events Planner! I would like to share a review of my experience with you:',
+      '',
+      `Name: ${name}`,
+      `Event Type: ${eventType}`,
+      `Rating: ${stars} (${rating}/5)`,
+      `Review: ${reviewText}`,
+    ];
+
+    openWhatsAppWithMessage(lines.join('\n'));
+
     form.style.display = 'none';
     if (successBox) successBox.style.display = 'flex';
   });
